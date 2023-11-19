@@ -27,6 +27,14 @@ public class Main {
         System.out.println(task11(14541)); //true res - true
         System.out.println("Task #12");
         System.out.println(task12("Hello","loHel")); //true res - true
+        System.out.println("Task #13");
+        System.out.println(task13(new int[] {3,4,5,2,3,4,5,6})); //true res - 5
+        System.out.println("Task #14");
+        System.out.println(task14(new int[] {5,1,7,2,9,13})); //true res - 7
+        System.out.println("Task #15");
+        System.out.println(task15(new int[] {1,2,3,6,5,0})); //true res - 6
+        System.out.println("Task #16");
+        System.out.println(task16(new int[] {4,2,9}, new int[] {1,5,2})); //true res - 2
     }
     public static int task1(int[] ar){
         Arrays.sort(ar);
@@ -149,5 +157,49 @@ public class Main {
             }
         }
         return true;
+    }
+    public static int task13(int[] ar){
+        int max = 1;
+        int current = 1;
+        for (int i = 1; i < ar.length; i++) {
+            if (ar[i] > ar[i-1]){
+                current++;
+                if (current>max){
+                    max=current;
+                }
+            } else {
+                current = 1;
+            }
+        }
+        return max;
+    }
+    public static int task14(int[] ar){
+        int max = 0;
+
+        for (int i = 1; i < ar.length; i++) {
+            int cur = Math.max(ar[i],ar[i-1]) - Math.min(ar[i],ar[i-1]);
+            if (cur > max){
+                max = cur;
+            }
+        }
+        return max;
+    }
+    public static int task15(int[] ar){
+        for (int i = 1; i < ar.length-1; i++) {
+            if (ar[i-1]<ar[i] && ar[i]>ar[i+1]){
+                return ar[i];
+            }
+        }
+        return -1;
+    }
+    public static int task16(int[] ar, int[] ar2){
+        for (int i : ar) {
+            for (int j : ar2) {
+                if (i == j) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 }
